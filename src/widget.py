@@ -1,15 +1,14 @@
-"""" Модуль виджета для обработки банковских операций """
-
 from .masks import get_mask_card_number, get_mask_account
 
 
 def mask_account_card(card_info: str) -> str:
-    """ Маскирует номер карты или счета в зависимости от типа """
+    """
+    Маскирует номер карты или счета из строки.
 
-
-    # Определяем тип (карта или счет)
+    Сама определяет карта это или счет по слову 'Счет'.
+    Возвращает строку с замаскированным номером.
+    """
     if "Счет" in card_info:
-        # Обработка счета
         parts = card_info.split()
         if len(parts) < 2:
             return card_info
@@ -22,7 +21,6 @@ def mask_account_card(card_info: str) -> str:
         except ValueError:
             return card_info
     else:
-    # Обработка карты
         parts = card_info.split()
         if len(parts) < 2:
             return card_info
@@ -37,9 +35,14 @@ def mask_account_card(card_info: str) -> str:
         except ValueError:
             return card_info
 
+
 def get_date(date_string: str) -> str:
-    """ Преобразует строку с датой в формат ДД.ММ.ГГГГ """
-    # Разделяем дату и время
+    """
+    Преобразует строку с датой в формат ДД.ММ.ГГГГ.
+
+    Берет дату в формате '2024-03-11T02:26:18.671407'
+    и возвращает в формате '11.03.2024'.
+    """
     date_part = date_string.split("T")[0]
     year, month, day = date_part.split("-")
     return f"{day}.{month}.{year}"
