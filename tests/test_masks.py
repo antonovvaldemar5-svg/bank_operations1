@@ -1,38 +1,43 @@
-# Тесты для tests
-from src.masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_card_number, get_mask_account
+import pytest
 
 
-def test_get_mask_card_number() -> None:
-    """Тест маскировки номера карты"""
-    result = get_mask_card_number(1234567890123456)
-    expected = "1234 56** **** 3456"
-    print(f"Тест карты: {result} == {expected}")
-
-    # Проверяем другой номер карты
-    result2 = get_mask_card_number(5555444433331111)
-    expected2 = "5555 44** **** 1111"
-    print(f"Тест карты 2: {result2} == {expected2}")
+# ФИКСТУРА для тестовых номеров карт
+@pytest.fixture
+def sample_cards():
+    return [7000792289606361, 1596837868705199, 12345]
 
 
-def test_get_mask_account() -> None:
-    # Проверяем обычный номер счета
-    result = get_mask_account(1234567890)
-    expected = "**7890"
-    print(f"Тест счета: {result} == {expected}")
-
-    # Проверяем короткий номер счета
-    result2 = get_mask_account(1234)
-    expected2 = "**1234"
-    print(f"Тест короткого счета: {result2} == {expected2}")
-
-    # Проверяем длинный номер счета
-    result3 = get_mask_account(112233445566)
-    expected3 = "**5566"
-    print(f"Тест длинного счета: {result3} == {expected3}")
+# ФИКСТУРА для тестовых номеров счетов
+@pytest.fixture
+def sample_accounts():
+    return [73654108430135874305, 64686473678894779589, 123]
 
 
-# Запускаем тесты при прямом выполнении файла
-if __name__ == "__main__":
-    test_get_mask_card_number()
-    test_get_mask_account()
-    print("Все тесты завершены!")
+# ПАРАМЕТРИЗАЦИЯ для карт
+@pytest.mark.parametrize("card_number, expected", [
+    (7000792289606361, "7000 79** **** 6361"),
+    (1596837868705199, "1596 83** **** 5199"),
+])
+def test_get_mask_card_number_parametrized(card_number, expected):
+    """Тестирует маскировку разных номеров карт"""
+    result = get_mask_card_number(card_number)
+    assert result == expected
+
+
+# ПАРАМЕТРИЗАЦИЯ для счетов
+@pytest.mark.parametrize("account_number, expected", [
+    (73654108430135874305, "**4305"),
+    (64686473678894779589, "**9589"),
+    (123, "**123"),
+])
+def test_get_mask_account_parametrized(account_number, expected):
+    """Тестирует маскировку разных номеров счетов"""
+    result = get_mask_account(account_number)
+    assert result == expected
+
+
+def test_get_mask_card_number_invalid(sample_cards):
+    """Тестирует невалидный номер карты используя фикстуру"""
+    result = get_mask_card_number(sample_cards[2])  # 12345
+    assert result == "12345"
