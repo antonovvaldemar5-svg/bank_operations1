@@ -1,11 +1,7 @@
-from datetime import datetime
-
-
 def log(filename=None):
     """
     Декоратор для логирования работы функций.
     """
-
     def decorator(func):
         def wrapper(*args, **kwargs):
             try:
@@ -32,5 +28,4 @@ def log(filename=None):
                 raise
 
         return wrapper
-
     return decorator
