@@ -7,7 +7,7 @@ def mask_account_card(card_info: str) -> str:
     """ Маскирует номер карты или счета в зависимости от типа """
 
 
-    # Определяем тип (карта или счет)
+# Определяем тип (карта или счет)
     if "Счет" in card_info:
         # Обработка счета
         parts = card_info.split()
@@ -22,7 +22,7 @@ def mask_account_card(card_info: str) -> str:
         except ValueError:
             return card_info
     else:
-    # Обработка карты
+# Обработка карты
         parts = card_info.split()
         if len(parts) < 2:
             return card_info
@@ -36,6 +36,7 @@ def mask_account_card(card_info: str) -> str:
             return f"{card_name} {masked_card}"
         except ValueError:
             return card_info
+
 
 def get_date(date_string: str) -> str:
     """ Преобразует строку с датой в формат ДД.ММ.ГГГГ """

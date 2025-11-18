@@ -1,17 +1,28 @@
 # Bank Operations Widget
 
+Проект для работы с банковскими операциями.
+
 ## Использование
+
+### Генераторы данных
 ```python
-from src.generators import filter_by_currency, card_number_generator
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
-# Пример
-for card in card_number_generator(1, 3):
+# Фильтрация транзакций по валюте USD
+transactions = [
+    {
+        "operationAmount": {
+            "amount": "100", 
+            "currency": {"code": "USD"}
+        },
+        "description": "Перевод"
+    }
+]
+usd_transactions = filter_by_currency(transactions, "USD")
+
+# Получение описаний транзакций
+descriptions = transaction_descriptions(transactions)
+
+# Генерация номеров карт
+for card in card_number_generator(1, 5):
     print(card)
-
-5. **Сохрани**
-
-**Потом:**
-```bash
-git add src/generators.py tests/test_generators.py README.md
-git commit -m "feat: add generators"
-git push origin feature/generators
