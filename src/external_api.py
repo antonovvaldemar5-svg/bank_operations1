@@ -1,10 +1,9 @@
 import os
 import requests
 from typing import Dict
-from dotenv import load_dotenv  # ← ДОБАВЬ ЭТО
+from dotenv import load_dotenv
 
-# Загружаем переменные из .env
-load_dotenv()  # ← И ЭТО
+load_dotenv()
 
 
 def convert_to_rubles(transaction: Dict) -> float:
@@ -18,7 +17,7 @@ def convert_to_rubles(transaction: Dict) -> float:
         return amount
 
     if currency in ['USD', 'EUR']:
-        api_key = os.getenv('EXCHANGE_API_KEY')  # ← теперь возьмет из .env
+        api_key = os.getenv('EXCHANGE_API_KEY')
         if not api_key:
             return amount
 

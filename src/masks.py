@@ -1,15 +1,18 @@
 import logging
 
+
 # Создаем логгер для модуля masks
 masks_logger = logging.getLogger('masks')
 masks_logger.setLevel(logging.DEBUG)
 
-# Создаем файловый handler (mode='w' для перезаписи)
+# Создаем файловый handler
 file_handler = logging.FileHandler('logs/masks.log', mode='w')
 file_handler.setLevel(logging.DEBUG)
 
-# Создаем форматтер с меткой времени, именем модуля, уровнем и сообщением
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+# Создаем форматтер
+formatter = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 file_handler.setFormatter(formatter)
 
 # Добавляем handler к логгеру
@@ -23,7 +26,7 @@ def get_mask_card_number(card_number):
     try:
         card_str = str(card_number)
         if len(card_str) != 16:
-            masks_logger.warning(f"Некорректная длина номера карты: {len(card_str)}")
+            masks_logger.warning(f"Некорректная длина: {len(card_str)}")
             return str(card_number)
 
         result = f"{card_str[:4]} {card_str[4:6]}** **** {card_str[-4:]}"
@@ -31,7 +34,7 @@ def get_mask_card_number(card_number):
         return result
 
     except Exception as e:
-        masks_logger.error(f"Ошибка при маскировке карты {card_number}: {str(e)}")
+        masks_logger.error(f"Ошибка при маскировке: {str(e)}")
         return str(card_number)
 
 
@@ -42,7 +45,7 @@ def get_mask_account(account_number):
     try:
         account_str = str(account_number)
         if len(account_str) < 4:
-            masks_logger.warning(f"Номер счета слишком короткий: {len(account_str)}")
+            masks_logger.warning(f"Слишком короткий: {len(account_str)}")
             return f"**{account_str}"
 
         result = f"**{account_str[-4:]}"
@@ -50,5 +53,5 @@ def get_mask_account(account_number):
         return result
 
     except Exception as e:
-        masks_logger.error(f"Ошибка при маскировке счета {account_number}: {str(e)}")
+        masks_logger.error(f"Ошибка при маскировке: {str(e)}")
         return str(account_number)

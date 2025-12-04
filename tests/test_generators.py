@@ -1,28 +1,13 @@
-import pytest
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+from src.generators import card_number_generator, filter_by_currency
+from src.generators import transaction_descriptions
 
 
 def test_filter_by_currency():
     """Тест фильтрации транзакций по валюте"""
     transactions = [
-        {
-            "operationAmount": {
-                "currency": {"code": "USD"},
-                "amount": "100"
-            }
-        },
-        {
-            "operationAmount": {
-                "currency": {"code": "EUR"},
-                "amount": "200"
-            }
-        },
-        {
-            "operationAmount": {
-                "currency": {"code": "USD"},
-                "amount": "300"
-            }
-        }
+        {"operationAmount": {"currency": {"code": "USD"}, "amount": "100"}},
+        {"operationAmount": {"currency": {"code": "EUR"}, "amount": "200"}},
+        {"operationAmount": {"currency": {"code": "USD"}, "amount": "300"}},
     ]
 
     result = list(filter_by_currency(transactions, "USD"))
@@ -40,12 +25,7 @@ def test_filter_by_currency_empty():
 def test_filter_by_currency_no_match():
     """Тест когда нет совпадений по валюте"""
     transactions = [
-        {
-            "operationAmount": {
-                "currency": {"code": "EUR"},
-                "amount": "100"
-            }
-        }
+        {"operationAmount": {"currency": {"code": "EUR"}, "amount": "100"}}
     ]
 
     result = list(filter_by_currency(transactions, "USD"))
@@ -57,19 +37,14 @@ def test_transaction_descriptions():
     transactions = [
         {"description": "Перевод организации"},
         {"description": "Оплата услуг"},
-        {"description": "Снятие наличных"}
+        {"description": "Снятие наличных"},
     ]
 
     generator = transaction_descriptions(transactions)
     descriptions = list(generator)
 
-    assert descriptions == ["Перевод организации", "Оплата услуг", "Снятие наличных"]
-
-
-def test_transaction_descriptions():
-    """Тест генератора с пустым списком"""
-    generator = transaction_descriptions([])
-    assert list(generator) == []
+    expected = ["Перевод организации", "Оплата услуг", "Снятие наличных"]
+    assert descriptions == expected
 
 
 def test_card_number_generator_single():
@@ -77,7 +52,7 @@ def test_card_number_generator_single():
     generator = card_number_generator(5, 5)
     numbers = list(generator)
 
-    assert numbers == ["0000 0000 0000 0005"]  # ←
+    assert numbers == ["0000 0000 0000 0005"]
 
 
 def test_card_number_generator_range():
@@ -85,9 +60,10 @@ def test_card_number_generator_range():
     generator = card_number_generator(9999999999999990, 9999999999999993)
     numbers = list(generator)
 
-    assert numbers == [
+    expected = [
         "9999 9999 9999 9990",
         "9999 9999 9999 9991",
         "9999 9999 9999 9992",
         "9999 9999 9999 9993"
     ]
+    assert numbers == expected

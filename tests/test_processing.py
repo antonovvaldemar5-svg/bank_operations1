@@ -1,5 +1,5 @@
-import pytest
-from src.processing import filter_by_state, sort_by_date  # Убедитесь что эта строка есть!
+from src.processing import filter_by_state
+from src.processing import sort_by_date
 
 
 def test_filter_by_state():
@@ -8,7 +8,7 @@ def test_filter_by_state():
         {"id": 1, "state": "EXECUTED", "date": "2024-01-01T00:00:00.000"},
         {"id": 2, "state": "CANCELED", "date": "2024-01-02T00:00:00.000"},
         {"id": 3, "state": "EXECUTED", "date": "2024-01-03T00:00:00.000"},
-        {"id": 4, "state": "PENDING", "date": "2024-01-04T00:00:00.000"}
+        {"id": 4, "state": "PENDING", "date": "2024-01-04T00:00:00.000"},
     ]
 
     result = filter_by_state(transactions, "EXECUTED")
@@ -21,7 +21,7 @@ def test_sort_by_date():
     transactions = [
         {"id": 1, "date": "2024-01-01T00:00:00.000"},
         {"id": 2, "date": "2024-01-03T00:00:00.000"},
-        {"id": 3, "date": "2024-01-02T00:00:00.000"}
+        {"id": 3, "date": "2024-01-02T00:00:00.000"},
     ]
 
     result_desc = sort_by_date(transactions, reverse=True)
@@ -36,7 +36,7 @@ def test_sort_by_date_with_timezones():
         {"id": 1, "date": "2024-01-01T10:00:00.000Z"},
         {"id": 2, "date": "2024-01-01T15:00:00.000Z"},
         {"id": 3, "date": "2024-01-01T10:00:00.000"},
-        {"id": 4, "date": "2024-01-01T15:00:00.000"}
+        {"id": 4, "date": "2024-01-01T15:00:00.000"},
     ]
 
     result = sort_by_date(transactions)
