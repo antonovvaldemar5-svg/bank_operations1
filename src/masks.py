@@ -1,28 +1,57 @@
-# Модуль для маскировки номера карты
-def get_mask_card_number(card_number: int) -> str:
-    """Маскирует номер карты по принципу: ХХХХ ХХ** **** ХХХХ"""
-    card_str = str(card_number)
-    if len(card_str) != 16:
+import logging
+
+
+# Создаем логгер для модуля masks
+masks_logger = logging.getLogger('masks')
+masks_logger.setLevel(logging.DEBUG)
+
+# Создаем файловый handler
+file_handler = logging.FileHandler('logs/masks.log', mode='w')
+file_handler.setLevel(logging.DEBUG)
+
+# Создаем форматтер
+formatter = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+file_handler.setFormatter(formatter)
+
+# Добавляем handler к логгеру
+masks_logger.addHandler(file_handler)
+
+
+def get_mask_card_number(card_number):
+    """Маскирует карту"""
+    masks_logger.debug(f"Маскировка номера карты: {card_number}")
+
+    try:
+        card_str = str(card_number)
+        if len(card_str) != 16:
+            masks_logger.warning(f"Некорректная длина: {len(card_str)}")
+            return str(card_number)
+
+        result = f"{card_str[:4]} {card_str[4:6]}** **** {card_str[-4:]}"
+        masks_logger.info(f"Карта замаскирована: {result}")
+        return result
+
+    except Exception as e:
+        masks_logger.error(f"Ошибка при маскировке: {str(e)}")
         return str(card_number)
 
-    first_six = card_str[:6]  # первые 6 цифр
-    last_four = card_str[-4:]  # последние 4 цифры
-    formated_first = f"{first_six[4]} {first_six[4:6]}"
-    masked_middle = "** ****"
 
-    # Форматируем номер карты
-    formated_first = f"{first_six[:4]} {first_six[4:6]}"
-    masked_middle = "** ****"
-    return f"{formated_first}{masked_middle} {last_four}"
+def get_mask_account(account_number):
+    """Маскирует счет"""
+    masks_logger.debug(f"Маскировка номера счета: {account_number}")
 
+    try:
+        account_str = str(account_number)
+        if len(account_str) < 4:
+            masks_logger.warning(f"Слишком короткий: {len(account_str)}")
+            return f"**{account_str}"
 
-def get_mask_account(account_number: int) -> str:
-    """ Маскирует номер счета по принципу: **ХХХХ """
-    account_str = str(account_number)
+        result = f"**{account_str[-4:]}"
+        masks_logger.info(f"Счет замаскирован: {result}")
+        return result
 
-    if len(account_str) < 4:
-        return f"**{account_str}"
-
-    last_four = account_str[-4:]
-    return f"**{last_four}"
-
+    except Exception as e:
+        masks_logger.error(f"Ошибка при маскировке: {str(e)}")
+        return str(account_number)
