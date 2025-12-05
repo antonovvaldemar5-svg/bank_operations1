@@ -1,6 +1,6 @@
 # src/utils.py
 import json
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 
 def read_json_file(filepath: str) -> List[Dict[str, Any]]:
@@ -8,7 +8,7 @@ def read_json_file(filepath: str) -> List[Dict[str, Any]]:
     Читает JSON файл и возвращает список транзакций
     """
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             data = json.load(f)
             if isinstance(data, list):
                 return data

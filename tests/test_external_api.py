@@ -1,5 +1,3 @@
-import pytest
-import os
 from unittest.mock import patch, Mock
 from src.external_api import convert_to_rubles
 
@@ -25,9 +23,7 @@ def test_convert_to_rubles_usd_with_mock():
         }
     }
 
-    # Мок для os.getenv
     with patch('os.getenv', return_value='fake_api_key'):
-        # Мок для requests.get
         mock_response = Mock()
         mock_response.status_code = 200
         mock_response.json.return_value = {'result': 7500.0}
@@ -48,7 +44,7 @@ def test_convert_to_rubles_no_api_key():
 
     with patch('os.getenv', return_value=None):
         result = convert_to_rubles(transaction)
-        assert result == 100.0  # Возвращает исходную сумму
+        assert result == 100.0
 
 
 def test_convert_to_rubles_api_error():

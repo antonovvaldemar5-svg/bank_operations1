@@ -2,7 +2,6 @@ import pandas as pd
 from typing import List, Dict, Any
 import logging
 
-# Логгер для модуля
 file_reader_logger = logging.getLogger('file_reader')
 file_reader_logger.setLevel(logging.DEBUG)
 
@@ -20,20 +19,18 @@ def read_csv_file(filepath: str) -> List[Dict[str, Any]]:
     """
     Читает CSV файл и возвращает список транзакций
     """
-    file_reader_logger.debug(f"Чтение CSV файла: {filepath}")
+    file_reader_logger.debug(f"Чтение CSV: {filepath}")
 
     try:
         df = pd.read_csv(filepath, encoding='utf-8')
         transactions = df.to_dict('records')
-        file_reader_logger.info(
-            f"CSV файл прочитан. Записей: {len(transactions)}"
-        )
+        file_reader_logger.info(f"CSV прочитан: {len(transactions)}")
         return transactions
     except FileNotFoundError:
-        file_reader_logger.error(f"CSV файл не найден: {filepath}")
+        file_reader_logger.error(f"CSV не найден: {filepath}")
         return []
     except Exception as e:
-        file_reader_logger.error(f"Ошибка чтения CSV: {str(e)}")
+        file_reader_logger.error(f"Ошибка CSV: {str(e)}")
         return []
 
 
@@ -41,18 +38,16 @@ def read_excel_file(filepath: str) -> List[Dict[str, Any]]:
     """
     Читает Excel файл и возвращает список транзакций
     """
-    file_reader_logger.debug(f"Чтение Excel файла: {filepath}")
+    file_reader_logger.debug(f"Чтение Excel: {filepath}")
 
     try:
         df = pd.read_excel(filepath)
         transactions = df.to_dict('records')
-        file_reader_logger.info(
-            f"Excel файл прочитан. Записей: {len(transactions)}"
-        )
+        file_reader_logger.info(f"Excel прочитан: {len(transactions)}")
         return transactions
     except FileNotFoundError:
-        file_reader_logger.error(f"Excel файл не найден: {filepath}")
+        file_reader_logger.error(f"Excel не найден: {filepath}")
         return []
     except Exception as e:
-        file_reader_logger.error(f"Ошибка чтения Excel: {str(e)}")
+        file_reader_logger.error(f"Ошибка Excel: {str(e)}")
         return []

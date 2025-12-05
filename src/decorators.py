@@ -17,13 +17,14 @@ def log(filename=None):
                 return result
 
             except Exception as e:
-                message = f"{func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}"
+                msg = f"{func.__name__} error: {type(e).__name__}. "
+                msg += f"Inputs: {args}, {kwargs}"
 
                 if filename:
                     with open(filename, "a", encoding="utf-8") as f:
-                        f.write(message + "\n")
+                        f.write(msg + "\n")
                 else:
-                    print(message)
+                    print(msg)
 
                 raise
 

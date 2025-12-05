@@ -17,4 +17,3 @@ def get_mask_account(account_number):
         return f"**{account_str}"
     last_four = account_str[-4:]
     return f"**{last_four}"
-

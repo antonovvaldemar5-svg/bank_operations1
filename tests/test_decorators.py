@@ -1,5 +1,7 @@
 import os
+
 import pytest
+
 from src.decorators import log
 
 
@@ -98,7 +100,7 @@ def test_log_multiple_calls():
 
     @log(filename="multi_test.txt")
     def counter():
-        if not hasattr(counter, 'count'):
+        if not hasattr(counter, "count"):
             counter.count = 0
         counter.count += 1
         return counter.count

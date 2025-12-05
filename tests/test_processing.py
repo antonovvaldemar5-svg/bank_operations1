@@ -1,5 +1,5 @@
-import pytest
-from src.processing import filter_by_state, sort_by_date  # Убедитесь что эта строка есть!
+from src.processing import filter_by_state
+from src.processing import sort_by_date
 
 
 def test_filter_by_state():
