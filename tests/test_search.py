@@ -1,5 +1,4 @@
-import pytest
-from src.search import search_by_description, count_by_categories
+from src.search import count_by_categories, search_by_description
 
 
 def test_search_by_description():
