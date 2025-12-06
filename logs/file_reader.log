@@ -1,12 +1,12 @@
-2025-12-05 21:20:06,213 - file_reader - DEBUG - Чтение CSV: test.csv
-2025-12-05 21:20:06,214 - file_reader - INFO - CSV прочитан: 1
-2025-12-05 21:20:06,215 - file_reader - DEBUG - Чтение Excel: test.xlsx
-2025-12-05 21:20:06,215 - file_reader - INFO - Excel прочитан: 1
-2025-12-05 21:20:06,215 - file_reader - DEBUG - Чтение CSV: nonexistent.csv
-2025-12-05 21:20:06,216 - file_reader - ERROR - CSV не найден: nonexistent.csv
-2025-12-05 21:20:06,216 - file_reader - DEBUG - Чтение Excel: nonexistent.xlsx
-2025-12-05 21:20:06,216 - file_reader - ERROR - Excel не найден: nonexistent.xlsx
-2025-12-05 21:20:06,217 - file_reader - DEBUG - Чтение CSV: error.csv
-2025-12-05 21:20:06,217 - file_reader - ERROR - Ошибка CSV: Test error
-2025-12-05 21:20:06,218 - file_reader - DEBUG - Чтение Excel: error.xlsx
-2025-12-05 21:20:06,218 - file_reader - ERROR - Ошибка Excel: Test error
+2025-12-05 21:20:47,917 - file_reader - DEBUG - Чтение CSV: test.csv
+2025-12-05 21:20:47,917 - file_reader - INFO - CSV прочитан: 1
+2025-12-05 21:20:47,918 - file_reader - DEBUG - Чтение Excel: test.xlsx
+2025-12-05 21:20:47,918 - file_reader - INFO - Excel прочитан: 1
+2025-12-05 21:20:47,919 - file_reader - DEBUG - Чтение CSV: nonexistent.csv
+2025-12-05 21:20:47,919 - file_reader - ERROR - CSV не найден: nonexistent.csv
+2025-12-05 21:20:47,920 - file_reader - DEBUG - Чтение Excel: nonexistent.xlsx
+2025-12-05 21:20:47,920 - file_reader - ERROR - Excel не найден: nonexistent.xlsx
+2025-12-05 21:20:47,920 - file_reader - DEBUG - Чтение CSV: error.csv
+2025-12-05 21:20:47,920 - file_reader - ERROR - Ошибка CSV: Test error
+2025-12-05 21:20:47,921 - file_reader - DEBUG - Чтение Excel: error.xlsx
+2025-12-05 21:20:47,921 - file_reader - ERROR - Ошибка Excel: Test error
