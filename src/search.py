@@ -11,7 +11,7 @@ def search_by_description(
     pattern = re.compile(re.escape(search_string), re.IGNORECASE)
     return [
         t for t in transactions
-        if pattern.search(t.get('description', ''))
+        if t.get('description') and pattern.search(t['description'])
     ]
 
 

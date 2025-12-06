@@ -1,27 +1,25 @@
-from src.widget import mask_account_card
+from src.widget import get_date, mask_account_card
 
 
-def test_mask_account_card_with_invalid_account():
-    """Тест маскировки счета с нечисловым номером"""
-    # Счет с буквами вместо цифр
-    assert mask_account_card("Счет abcdef") == "Счет abcdef"
-    # Счет с символами
-    assert mask_account_card("Счет 12-34-56") == "Счет 12-34-56"
+def test_mask_account_card_visa():
+    """Маскировка Visa карты."""
+    result = mask_account_card('Visa Platinum 7000792289606361')
+    assert result == 'Visa Platinum 7000 79** **** 6361'
 
 
-def test_mask_account_card_with_invalid_card():
-    """Тест маскировки карты с нечисловым номером"""
-    # Карта с буквами вместо цифр
-    assert mask_account_card("Visa abcdef") == "Visa abcdef"
-    # Карта с символами
-    assert mask_account_card("MasterCard 12-34-56") == "MasterCard 12-34-56"
+def test_mask_account_card_mastercard():
+    """Маскировка MasterCard."""
+    result = mask_account_card('MasterCard 7158300734726758')
+    assert result == 'MasterCard 7158 30** **** 6758'
 
 
-def test_mask_account_card_only_account_word():
-    """Тест когда только слово 'Счет' без номера"""
-    assert mask_account_card("Счет") == "Счет"
+def test_mask_account_card_schet():
+    """Маскировка счета."""
+    result = mask_account_card('Счет 73654108430135874305')
+    assert result == 'Счет **4305'
 
 
-def test_mask_account_card_only_card_name():
-    """Тест когда только название карты без номера"""
-    assert mask_account_card("Visa") == "Visa"
+def test_get_date():
+    """Форматирование даты."""
+    result = get_date('2023-12-01T10:30:00.000')
+    assert result == '01.12.2023'

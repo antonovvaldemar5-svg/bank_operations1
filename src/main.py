@@ -50,8 +50,10 @@ def main():
         trans = sort_by_date(trans, reverse=reverse)
 
     # Поиск по описанию
-    search_q = input("\nОтфильтровать список транзакций по определенному слову "
-                     "в описании? Да/Нет: ").lower()
+    search_q = input(
+        "\nОтфильтровать список транзакций по определенному слову "
+        "в описании? Да/Нет: "
+    ).lower()
     if search_q in ['да', 'yes', 'y', 'д']:
         word = input("Введите слово для поиска: ").strip()
         trans = search_by_description(trans, word)

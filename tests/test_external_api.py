@@ -65,3 +65,9 @@ def test_convert_to_rubles_api_error():
         with patch('requests.get', return_value=mock_response):
             result = convert_to_rubles(transaction)
             assert result == 100.0
+
+        def test_convert_to_rubles_empty():
+            """Конвертация пустой транзакции."""
+            from src.external_api import convert_to_rubles
+            result = convert_to_rubles({})
+            assert result == 0.0
