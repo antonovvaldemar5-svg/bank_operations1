@@ -1,0 +1,12 @@
+2025-12-06 12:41:57,817 - file_reader - DEBUG - Чтение CSV: test.csv
+2025-12-06 12:41:57,818 - file_reader - INFO - CSV прочитан: 1
+2025-12-06 12:41:57,819 - file_reader - DEBUG - Чтение Excel: test.xlsx
+2025-12-06 12:41:57,819 - file_reader - INFO - Excel прочитан: 1
+2025-12-06 12:41:57,820 - file_reader - DEBUG - Чтение CSV: nonexistent.csv
+2025-12-06 12:41:57,820 - file_reader - ERROR - CSV не найден: nonexistent.csv
+2025-12-06 12:41:57,821 - file_reader - DEBUG - Чтение Excel: nonexistent.xlsx
+2025-12-06 12:41:57,821 - file_reader - ERROR - Excel не найден: nonexistent.xlsx
+2025-12-06 12:41:57,821 - file_reader - DEBUG - Чтение CSV: error.csv
+2025-12-06 12:41:57,822 - file_reader - ERROR - Ошибка CSV: Test error
+2025-12-06 12:41:57,822 - file_reader - DEBUG - Чтение Excel: error.xlsx
+2025-12-06 12:41:57,822 - file_reader - ERROR - Ошибка Excel: Test error
